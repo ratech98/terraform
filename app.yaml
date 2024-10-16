@@ -1,4 +1,3 @@
 runtime: nodejs20
 entrypoint: node api/index.js
-network:
-  session_affinity: true
+
