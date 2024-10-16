@@ -1,0 +1,10 @@
+runtime: nodejs20
+entrypoint: node api/index.js
+network:
+  session_affinity: true
+
+env_variables:
+  MONGO_URI: "mongodb+srv://mbharathich:EF8Qi6jgLTWC9hP8@cluster1.wd8ypjn.mongodb.net/hefgro?retryWrites=true&w=majority&appName=cluster1"
+  JWT_SECRET: "alamsfdfsdsdfsdfsdfsdfsdfsdrafdar!@#$0fddlfjdfdfdssfds"
+  JWT_SECRET_FOR_VERIFY: "lfjfjasjfsdfsfr09ri09wfsdfsdfrilfdjdj"
+  bucketName: "ninth-iris-408504.appspot.com"  
