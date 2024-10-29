@@ -5,7 +5,22 @@ steps:
   - name: "gcr.io/cloud-builders/gcloud"
     args: ["app", "deploy", "app.yaml", "--quiet"]  # Adding --quiet to suppress interactive prompts
 
-options:
-  logging: CLOUD_LOGGING_ONLY  # Change to CLOUD_LOGGING_ONLY or NONE if no logs are required
-  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET  # Use this option for user-owned logs bucket
+  - name: 'hashicorp/terraform:light'
+    args: ['init']
+    dir: './dev'  # Specify the directory for the dev environment
 
+  - name: 'hashicorp/terraform:light'
+    args: ['apply', '-auto-approve']
+    dir: './dev'  # Specify the directory for the dev environment
+
+  - name: 'hashicorp/terraform:light'
+    args: ['init']
+    dir: './prod'  # Specify the directory for the prod environment
+
+  - name: 'hashicorp/terraform:light'
+    args: ['apply', '-auto-approve']
+    dir: './prod'  # Specify the directory for the prod environment
+
+options:
+  logging: CLOUD_LOGGING_ONLY  # Log options: CLOUD_LOGGING_ONLY or NONE if no logs are required
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET  # Use user-owned logs bucket behavior
